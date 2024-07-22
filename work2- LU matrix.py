@@ -4,7 +4,7 @@ Dan Yosef Avitan 203109996
 Yarden Itah 315097527
 Nofar Duchan 322599424
 
-git_link: https://github.com/nofarduchan/Numerical-Analis-.git
+git_link:
 """
 import numpy as np
 
@@ -95,15 +95,15 @@ def reverse_matrix(matrix):
 
     return identity
 
-def matrix_L(matrix):
+def matrix_U(matrix):
     """
-    Performs LU decomposition to find the lower triangular matrix L.
+    Performs LU decomposition to find the lower triangular matrix U.
 
     Parameters:
     matrix (np.array): The matrix to be decomposed.
 
     Returns:
-    np.array: The lower triangular matrix L.
+    np.array: The lower triangular matrix U.
     """
     i = 0
     j = 0
@@ -122,33 +122,33 @@ def matrix_L(matrix):
     matrix = np.dot(identity_matrix, matrix)
     return matrix
 
-def matrix_U():
+def matrix_L():
     """
-    Constructs the upper triangular matrix U from the elementary row operations stored in arr.
+    Constructs the upper triangular matrix L from the elementary row operations stored in arr.
 
     Returns:
-    np.array: The upper triangular matrix U.
+    np.array: The upper triangular matrix L.
     """
-    matrixU = np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
+    matrixL = np.array([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]])
     for elem in arr:
         rev_elem = reverse_matrix(elem)
-        matrixU = np.dot(matrixU, rev_elem)
-    return matrixU
+        matrixL = np.dot(matrixL, rev_elem)
+    return matrixL
 
 if __name__ == '__main__':
     matrix = np.array([[1, 4, -3], [-2, 1, 5], [3, 2, 1]])
-    matrixL = matrix_L(matrix)
-    matrixU = matrix_U()
-    matrix_A = np.dot(matrixU, matrixL)
-    print(f' L: \n {matrixL}\n')
+    matrixU = matrix_U(matrix)
+    matrixL = matrix_L()
+    matrix_A = np.dot(matrixL, matrixU)
     print(f' U: \n {matrixU}\n')
+    print(f' L: \n {matrixL}\n')
     print(f' A: \n {matrix_A}\n')
     vector_b = np.array([[1], [2], [3]])
-    rev_matrix_l = reverse_matrix(matrixL)
-    rev_matrix_u = reverse_matrix(matrixU)
-    print(f' Reverse L: \n {rev_matrix_l}\n')
-    print(f' Reverse U: \n {rev_matrix_u}\n')
-    vector_y = np.dot(reverse_matrix(matrixU), vector_b)
+    rev_matrix_U = reverse_matrix(matrixU)
+    rev_matrix_L = reverse_matrix(matrixL)
+    print(f' Reverse U: \n {rev_matrix_U}\n')
+    print(f' Reverse L: \n {rev_matrix_L}\n')
+    vector_y = np.dot(reverse_matrix(matrixL), vector_b)
     print(f' Vector y: \n {vector_y}\n')
-    vector_x = np.dot(reverse_matrix(matrixL), vector_y)
+    vector_x = np.dot(reverse_matrix(matrixU), vector_y)
     print(f' Vector x: \n {vector_x}\n')
