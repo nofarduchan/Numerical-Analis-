@@ -8,26 +8,30 @@ git_link: https://github.com/nofarduchan/Numerical-Analis-.git
 """
 
 
-def linear_interpolation(points, x):
-    """
-    Perform linear interpolation between the two closest points to x.
-
-    param points: List of points [(x0, y0), (x1, y1), ...]
-    param x: x value for which to find the interpolated y value
-    return: y value
-    """
-    # Sort points by x values
-    points = sorted(points)
-
-    # Find the two closest points
-    for i in range(len(points) - 1):
-        x0, y0 = points[i]
-        x1, y1 = points[i + 1]
-        if x0 <= x <= x1:
-            return y0 + (y1 - y0) * (x - x0) / (x1 - x0)
-
-    raise ValueError("x value is out of the range of provided points.")
-
+def linear_interpolation(table_points, point):
+    p = []
+    result = 0
+    flag = 1
+    for i in range(len(table_points)):
+        p.append(table_points[i][0])
+    for i in range(len(p) - 1):
+        if i <= point <= i + 1:
+            x1 = table_points[i][0]
+            x2 = table_points[i + 1][0]
+            y1 = table_points[i][1]
+            y2 = table_points[i + 1][1]
+            result = (((y1 - y2) / (x1 - x2)) * point) + ((y2 * x1) - (y1 * x2)) / (x1 - x2)
+            print("\nThe approximation (interpolation) of the point ", round(result, 4))
+            flag = 0
+    if flag:
+        x1 = table_points[0][0]
+        x2 = table_points[1][0]
+        y1 = table_points[0][1]
+        y2 = table_points[1][1]
+        m = (y1 - y2) / (x1 - x2)
+        result = y1 + m * (point - x1)
+        print("\nThe approximation (extrapolation) of the point ", point, " is: ", round(result, 4))
+    return result
 
 def polynomial_interpolation(points, x):
     """
@@ -79,7 +83,7 @@ def lagrange_interpolation(points, x):
 
 def main():
     # Defining the point pairs
-    points =  [(0, 0), (1, 0.8415), (2, 0.9093)]
+    points = [(0, 0), (1, 0.8415), (2, 0.9093)]
 
     # Getting the x value from the user
     x = 1.28
