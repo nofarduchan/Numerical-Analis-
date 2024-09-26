@@ -1,10 +1,10 @@
 import numpy as np
 
 def print_matrix(matrix):
-    # for row in matrix:
-    #     for element in row:
-    #         # print(element, end=" ")  # Print each element in the row
-    #     # print()  # Move to the next row
+    for row in matrix:
+        for element in row:
+            print(element, end=" ")  # Print each element in the row
+        print()  # Move to the next row
     print()
 
 
@@ -80,7 +80,7 @@ def DominantDiagonalFix(matrix):
         result.append([])
         # Cannot dominant diagonal
         if i not in dom:
-            # print("Couldn't find dominant diagonal.")
+            print("Couldn't find dominant diagonal.")
             return matrix
     # Change the matrix to a dominant diagonal
     for i,j in enumerate(dom):
@@ -182,10 +182,10 @@ def partial_pivoting(A,i,N):
     # Swap the current row with the pivot row
     if pivot_row != i:
         e_matrix = swap_rows_elementary_matrix(N, i, pivot_row)
-        # print(f"elementary matrix for swap between row {i} to row {pivot_row} :\n {e_matrix} \n")
+        print(f"elementary matrix for swap between row {i} to row {pivot_row} :\n {e_matrix} \n")
         A = np.dot(e_matrix, A)
-        # print(f"The matrix after elementary operation :\n {A}")
-        # print("------------------------------------------------------------------")
+        print(f"The matrix after elementary operation :\n {A}")
+        print("------------------------------------------------------------------")
 def MultiplyMatrix(matrixA, matrixB):
     """
     Function for multiplying 2 matrices
@@ -252,8 +252,8 @@ def Cond(matrix, invert):
     :param invert: Inverted matrix
     :return: CondA = ||A|| * ||A(-1)||
     """
-    # print("|| A ||max = ", MaxNorm(matrix))
-    # print("|| A(-1) ||max = ", MaxNorm(invert))
+    print("|| A ||max = ", MaxNorm(matrix))
+    print("|| A(-1) ||max = ", MaxNorm(invert))
     return MaxNorm(matrix)*MaxNorm(invert)
 
 def InverseMatrix(matrix,vector):
@@ -264,7 +264,7 @@ def InverseMatrix(matrix,vector):
     """
     # Unveri reversible matrix
     if Determinant(matrix, 1) == 0:
-        # print("Error,Singular Matrix\n")
+        print("Error,Singular Matrix\n")
         return
     # result matrix initialized as singularity matrix
     result = MakeIMatrix(len(matrix), len(matrix))
