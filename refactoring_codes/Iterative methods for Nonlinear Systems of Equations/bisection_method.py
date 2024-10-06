@@ -74,5 +74,6 @@ if __name__ == '__main__':
     print(f"f() = {f(1)}")
     print(f"f() = {f(2)}")
 
+
     root = bisection_method(f,  1, 2)
     print(f"\nThe equation f(x) has an approximate root at x = {root}")
