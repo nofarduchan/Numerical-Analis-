@@ -47,6 +47,17 @@ def bisection_step(f, a, b):
     else:
         return c, c, b  # Update a to c
 
+def find_sign_changes_and_solve(f, start, end, step):
+    a = start
+    while a < end:
+        b = a + step
+        # בדיקה אם יש שינוי סימן
+        if f(a) * f(b) < 0:
+            print(f"Sign change found between a = {a} and b = {b}")
+            # קריאה לפונקציית bisection_method עבור תחום זה
+            root = bisection_method(f, a, b)
+            print(f"The equation f(x) has an approximate root at x = {root}\n")
+        a += step
 
 def bisection_method(f, a, b, tol=1e-6):
     """
@@ -69,11 +80,13 @@ def bisection_method(f, a, b, tol=1e-6):
 
 
 if __name__ == '__main__':
-    f = lambda x: x ** 4 + x ** 3 - 3 * x ** 2
-
-    print(f"f() = {f(1)}")
-    print(f"f() = {f(2)}")
-
-
-    root = bisection_method(f,  1, 2)
-    print(f"\nThe equation f(x) has an approximate root at x = {root}")
+    # f = lambda x: x ** 4 + x ** 3 - 3 * x ** 2
+    f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))
+    # f_prime = lambda x: ((-math.sin(x ** 2 + 5 * x + 6) * (2 * x + 5) * 2 * math.exp(-x)) +
+    #                             (math.cos(x ** 2 + 5 * x + 6) * (-2 * math.exp(-x)))
+    #                     ) / (4 * math.exp(-2 * x))
+    start = -3
+    end = 2
+    step = 0.1
+    # קריאה לפונקציה שתבדוק ותמצא שורשים
+    find_sign_changes_and_solve(f, start, end, step)

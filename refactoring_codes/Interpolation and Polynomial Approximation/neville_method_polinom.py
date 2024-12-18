@@ -37,9 +37,13 @@ def compute_tableau_entry(tableau, x_data, x_interpolate, i, j):
 
 if __name__ == '__main__':
     # Example usage:
-    x_data = [1, 2, 5, 7]
-    y_data = [1, 0, 2, 3]
-    x_interpolate = 3
+    # x_data = [1, 2, 5, 7]
+    # y_data = [1, 0, 2, 3]
+    # x_interpolate = 3
+
+    x_data = [1.2, 1.3, 1.4, 1.5, 1.7]
+    y_data = [1.31, 2.69, 1.30, -1.25, -2.1]
+    x_interpolate = 1.47
 
     interpolated_value = neville(x_data, y_data, x_interpolate)
     print(f"\nInterpolated value at x = {x_interpolate} is y = {interpolated_value}")
