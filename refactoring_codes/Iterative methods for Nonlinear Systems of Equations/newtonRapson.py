@@ -1,3 +1,6 @@
+import math
+
+
 def print_iteration_header():
     """
     Prints the header for the Newton-Raphson iteration table.
@@ -46,11 +49,22 @@ def newton_raphson(f, df, p0, TOL, N=50):
 
 
 if __name__ == '__main__':
-    f = lambda x: x ** 3 - 3 * x ** 2
-    df = lambda x: 3 * x ** 2 - 6 * x
-    p0 = -5
+    f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))
+    df = lambda x: ((-math.sin(x ** 2 + 5 * x + 6) * (2 * x + 5) * 2 * math.exp(-x)) +
+                                (math.cos(x ** 2 + 5 * x + 6) * (-2 * math.exp(-x)))
+                        ) / (4 * math.exp(-2 * x))
+
     TOL = 1e-6
     N = 100
-    root = newton_raphson(f, df, p0, TOL, N)
 
-    print(f"\nThe equation f(x) has an approximate root at x = {root:<15.9f}")
+    # Check for sign changes in the range [-3, 2] with steps of 0.1
+    a = -3
+    b = a + 0.1
+    while b <= 2:
+        if f(a) * f(b) < 0:  # Sign change detected
+            p0 = (a + b) / 2  # Midpoint as initial guess
+            print(f"\nSign change detected between {a} and {b}")
+            root = newton_raphson(f, df, p0, TOL, N)
+            print(f"The equation f(x) has an approximate root at x = {root:<15.9f}")
+        a += 0.1
+        b = a + 0.1
