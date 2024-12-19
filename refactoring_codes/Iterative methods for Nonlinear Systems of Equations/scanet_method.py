@@ -24,7 +24,6 @@ def secant_method(f, x0, x1, TOL, N=50):
 
 
 if __name__ == '__main__':
-    # f = lambda x: x ** 2 - 5 * x + 2  # The function we are testing
     f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))  # Example function
     TOL = 1e-6  # Tolerance
     N = 20  # Maximum number of iterations
