@@ -24,22 +24,22 @@ def secant_method(f, x0, x1, TOL, N=50):
 
 
 if __name__ == '__main__':
-    # f = lambda x: x ** 2 - 5 * x + 2  # הפונקציה שלך
-    f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))
-    TOL = 1e-6
-    N = 20
+    # f = lambda x: x ** 2 - 5 * x + 2  # The function we are testing
+    f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))  # Example function
+    TOL = 1e-6  # Tolerance
+    N = 20  # Maximum number of iterations
 
-    # הגדרת הטווח והקפיצות
+    # Define the range and step size
     a = -3
     b = a + 0.1
 
     print("Checking for sign changes in the range [-3, 2]:")
 
     while b <= 2:
-        if f(a) * f(b) < 0:  # שינוי סימן נמצא
+        if f(a) * f(b) < 0:  # A sign change is detected
             print(f"\nSign change detected between a = {a} and b = {b}")
             roots = secant_method(f, a, b, TOL, N)
             print(f"The equation f(x) has an approximate root at x = {roots:.6f}")
 
-        a += 0.1  # הגדלת הקצה התחתון
-        b = a + 0.1  # התאמת הקצה העליון
+        a += 0.1  # Increment the lower bound
+        b = a + 0.1  # Adjust the upper bound
