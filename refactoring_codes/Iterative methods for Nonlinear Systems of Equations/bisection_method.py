@@ -81,12 +81,12 @@ def bisection_method(f, a, b, tol=1e-6):
 
 if __name__ == '__main__':
     # f = lambda x: x ** 4 + x ** 3 - 3 * x ** 2
-    f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))
+    #f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))
+    f= lambda x: (2*x*np.exp(-x) + np.log(2*x**2)) * (2*x**4 + 2*x**2 - 3*x - 5)
     # f_prime = lambda x: ((-math.sin(x ** 2 + 5 * x + 6) * (2 * x + 5) * 2 * math.exp(-x)) +
     #                             (math.cos(x ** 2 + 5 * x + 6) * (-2 * math.exp(-x)))
     #                     ) / (4 * math.exp(-2 * x))
     start = -3
     end = 2
     step = 0.1
-    # קריאה לפונקציה שתבדוק ותמצא שורשים
     find_sign_changes_and_solve(f, start, end, step)

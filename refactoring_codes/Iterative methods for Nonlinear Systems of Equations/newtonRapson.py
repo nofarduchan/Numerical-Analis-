@@ -1,5 +1,7 @@
 import math
 
+import numpy as np
+
 
 def print_iteration_header():
     """
@@ -49,10 +51,9 @@ def newton_raphson(f, df, p0, TOL, N=50):
 
 
 if __name__ == '__main__':
-    f = lambda x: math.cos(x ** 2 + 5 * x + 6) / (2 * math.exp(-x))
-    df = lambda x: ((-math.sin(x ** 2 + 5 * x + 6) * (2 * x + 5) * 2 * math.exp(-x)) +
-                                (math.cos(x ** 2 + 5 * x + 6) * (-2 * math.exp(-x)))
-                        ) / (4 * math.exp(-2 * x))
+    f = lambda x: (2*x*np.exp(-x) + np.log(2*x**2)) * (2*x**4 + 2*x**2 - 3*x - 5)
+    df = lambda x: ((2*np.exp(-x) - 2*x*np.exp(-x) + (1/x)) * (2*x**4 + 2*x**2 - 3*x - 5)) + \
+               ((2*x*np.exp(-x) + np.log(2*x**2)) * (8*x**3 + 4*x - 3))
 
     TOL = 1e-6
     N = 100

@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
 
     x_data = [1.2, 1.3, 1.4, 1.5, 1.6]
-    y_data = [1.31, 2.69, 1.30, -1.25, -2.1]
+    y_data = [1.5095, 1.6984, 1.9043, 2.1293, 2.3756]
     x_interpolate = 1.47
 
     y_interpolate = lagrange_interpolation(x_data, y_data, x_interpolate)
